@@ -295,7 +295,6 @@
       <button class="cart-close-btn">
         <i class="bi bi-x-lg"></i>
       </button>
-      
     </div>
 
     <footer>
@@ -377,6 +376,15 @@
 
         $(".cart-close-btn, .cart-overlay").on("click", function () {
           $(".cart-modal, .cart-overlay").fadeOut();
+        });
+
+        $(".place-order-btn").on("click", function () {
+          if ($.isEmptyObject(cart)) {
+            alert("Your cart is empty!");
+          } else {
+            alert("Order Placed ✅");
+            
+          }
         });
       });
     </script>
