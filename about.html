@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Amarella</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function fadeInOnScroll() {
+                $(".fade-in").each(function () {
+                    let position = $(this).offset().top;
+                    let windowBottom = $(window).scrollTop() + $(window).height();
+
+                    if (windowBottom > position + 50) {
+                        $(this).addClass("visible");
+                    }
+                });
+            }
+
+            fadeInOnScroll(); // Check on page load
+            $(window).on("scroll", fadeInOnScroll);
+        });
+    </script>
+    <style>
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,7 +52,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero about-hero">
+    <section class="hero about-hero fade-in">
         <div class="hero-text">
             <h1>Experience the <span>Flavors</span> of India</h1>
             <p>At Amarella, we bring you a fusion of authentic Indian spices and modern culinary artistry.</p>
@@ -30,35 +61,35 @@
 
     <main>
         <!-- Our Story -->
-        <section class="about-section">
+        <section class="about-section fade-in">
             <h2>Our Story</h2>
             <p>Founded with a passion for Indian cuisine, Amarella has been serving flavorful dishes crafted with love and tradition. From rich curries to sizzling tandoori delights, we take pride in every plate we serve.</p>
         </section>
 
         <!-- Our Mission -->
-        <section class="about-section">
+        <section class="about-section fade-in">
             <h2>Our Mission</h2>
             <p>We believe in using fresh, high-quality ingredients to create dishes that celebrate the diversity of Indian flavors. Our goal is to provide an unforgettable dining experience that brings people together.</p>
         </section>
 
         <!-- Our Team -->
-        <section class="about-section team">
+        <section class="about-section team fade-in">
             <h2>Meet Our Chefs</h2>
             <div class="team-grid">
-                <div class="team-member">
+                <div class="team-member fade-in">
                     <img src="images/kavish.jpg" alt="Head Chef">
                     <h3>Chef Kavish Toraskar</h3>
                     <p>Master of North Indian delicacies, known for his signature butter chicken.</p>
                 </div>
-                <div class="team-member">
+                <div class="team-member fade-in">
                     <img src="images/nirbhay.jpg" alt="Pastry Chef">
                     <h3>Chef Nirbhay Gaude</h3>
                     <p>Bringing the sweetest flavors with his renowned Gulab Jamun and Rasmalai.</p>
                 </div>
-                <div class="team-member">
+                <div class="team-member fade-in">
                     <img src="images/om.png" alt="Rare Chef">
                     <h3>Chef Om Kamble</h3>
-                    <p>Cooks Rarely on special occations.</p>
+                    <p>Cooks Rarely on special occasions.</p>
                 </div>
             </div>
         </section>

@@ -254,8 +254,6 @@ section {
     text-align: center;
 }
 
-
-
 form {
     display: flex;
     flex-direction: column;
@@ -269,18 +267,19 @@ label {
 }
 
 input {
-    padding: 10px;
-    border: 1px solid #ff9800;
-    border-radius: 5px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
     font-size: 1em;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
+    transition: all 0.3s ease;
 }
 
 input:focus {
     outline: none;
-    border-color: #ff9800;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
 }
 
 input[type="submit"] {
@@ -289,20 +288,23 @@ input[type="submit"] {
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 8px;
 }
 
 input[type="submit"]:hover {
     background: #e68900;
+    transform: scale(1.05);
 }
 
 /* Make it responsive */
 @media (max-width: 768px) {
-    main {
+    .booking-page {
         width: 90%;
         padding: 20px;
     }
 }
+
 
 /* About Page Hero Section */
 .about-hero {
@@ -314,12 +316,27 @@ input[type="submit"]:hover {
     background: url('images/about-hero.jpg') center/cover no-repeat;
     color: white;
     padding: 50px;
+    position: relative;
+}
+
+/* Dark overlay for readability */
+.about-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    z-index: 1;
 }
 
 .about-hero h1 {
     font-size: 3rem;
     font-weight: bold;
     color: #ff9800;
+    position: relative;
+    z-index: 2;
 }
 
 .about-hero h1 span {
@@ -332,6 +349,11 @@ input[type="submit"]:hover {
     max-width: 800px;
     margin: 50px auto;
     text-align: center;
+    padding: 30px;
+    background: rgba(20, 20, 20, 0.85); /* Dark semi-transparent */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: brightness(1.1); /* Subtle enhancement */
 }
 
 .about-section h2 {
@@ -360,16 +382,25 @@ input[type="submit"]:hover {
 .team-member {
     text-align: center;
     max-width: 250px;
+    padding: 20px;
+    background: rgba(30, 30, 30, 0.9); /* Slightly lighter than sections */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Subtle hover effect */
+.team-member:hover {
+    transform: translateY(-5px);
 }
 
 .team-member img {
-    width: 200px; /* Set a fixed width */
-    height: 200px; /* Set a fixed height */
-    object-fit: cover; /* Ensures images maintain aspect ratio and fill the area */
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+    box-shadow: 0 3px 6px rgba(255, 152, 0, 0.4);
 }
-
 
 .team-member h3 {
     font-size: 1.5rem;
@@ -464,7 +495,10 @@ input[type="submit"]:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center; /* Centers all form elements */
+    width: 100%;
 }
+
 
 .contact-form label {
     font-weight: bold;
@@ -472,22 +506,25 @@ input[type="submit"]:hover {
     text-align: left;
 }
 
-.contact-form input, .contact-form textarea {
-    padding: 10px;
-    border: 1px solid #ff9800;
-    border-radius: 5px;
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    border: none; /* Remove the yellow border */
+    border-radius: 8px;
     font-size: 1em;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15); /* Soft translucent background */
     color: white;
     width: 100%;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #ff9800;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5); /* Soft glow effect */
 }
+
 
 .contact-form button {
     background: #ff9800;

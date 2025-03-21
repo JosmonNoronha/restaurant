@@ -1,52 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book a Table</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
     <header>
-        <h1>Book a Table</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="book.html" class="active">Book</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+      <h1>Book a Table</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="book.html" class="active">Book</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </header>
     <main class="booking-page">
-        <section>
-            <h2>Reserve Your Spot</h2>
-            <form action="#" method="POST">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+      <section>
+        <h2>Reserve Your Spot</h2>
+        <form id="booking-form">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required />
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
 
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required>
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
 
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" required />
 
-                <label for="time">Time:</label>
-                <input type="time" id="time" name="time" required>
+          <label for="time">Time:</label>
+          <input type="time" id="time" name="time" required />
 
-                <label for="guests">Number of Guests:</label>
-                <input type="number" id="guests" name="guests" min="1" required>
+          <label for="guests">Number of Guests:</label>
+          <input type="number" id="guests" name="guests" min="1" required />
 
-                <input type="submit" value="Book Now">
-            </form>
-        </section>
+          <input type="submit" value="Book Now" />
+        </form>
+      </section>
     </main>
     <footer>
-        <p>&copy; 2025 Our Restaurant. All rights reserved.</p>
+      <p>&copy; 2025 Amarella. All rights reserved.</p>
     </footer>
-</body>
+
+    <script>
+      $(document).ready(function () {
+        // Prevent past date selection
+        let today = new Date().toISOString().split("T")[0];
+        $("#date").attr("min", today);
+
+        $("#booking-form").submit(function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          let name = $("#name").val().trim();
+          let email = $("#email").val().trim();
+          let phone = $("#phone").val().trim();
+          let date = $("#date").val();
+          let time = $("#time").val();
+          let guests = $("#guests").val();
+
+          // Simple validation
+          if (
+            name === "" ||
+            email === "" ||
+            phone === "" ||
+            date === "" ||
+            time === "" ||
+            guests === ""
+          ) {
+            alert("Please fill in all fields.");
+            return;
+          }
+
+          // Validate phone number (basic check for numbers)
+          let phoneRegex = /^[0-9]{10}$/;
+          if (!phoneRegex.test(phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            return;
+          }
+
+          // Success alert
+          alert("Your booking has been successfully submitted!\n");
+
+          $(this)[0].reset(); // Reset form after submission
+        });
+      });
+    </script>
+  </body>
 </html>
