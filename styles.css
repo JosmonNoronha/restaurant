@@ -668,9 +668,9 @@ input[type="submit"]:hover {
 /* Floating Cart Button */
 .cart-toggle-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #d1a054;
+    bottom: 30px;
+    right: 30px;
+    background-color: #d19233;
     color: white;
     border: none;
     width: 60px;
