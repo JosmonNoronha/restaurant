@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="book.html">Book a Table</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="menu-section">
+            <h1>Our Menu</h1>
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="Pizza">Pizza</button>
+                <button class="category-btn" data-category="Pasta">Pasta</button>
+                <button class="category-btn" data-category="Salad">Salad</button>
+                <button class="category-btn" data-category="Dessert">Dessert</button>
+            </div>
+            <div id="menu-container" class="menu-items">
+                <!-- Menu items will be loaded dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Restaurant Name. All rights reserved.</p>
+    </footer>
+
+    <script src="js/restaurant.js"></script>
+    <script>
+        // Add category filtering functionality
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Get all menu items
+                const menuItems = await RestaurantAPI.getMenu();
+                
+                // Filter items by category
+                const category = button.dataset.category;
+                const filteredItems = category === 'all' 
+                    ? menuItems 
+                    : menuItems.filter(item => item.category === category);
+
+                // Display filtered items
+                displayMenuItems(filteredItems);
+            });
+        });
+    </script>
+</body>
+</html> 
